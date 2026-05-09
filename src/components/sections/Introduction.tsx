@@ -2,6 +2,9 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import photo from './../../assets/photo.png';
+import { SiLeetcode } from 'react-icons/si';
+import { LiaLinkedin } from 'react-icons/lia';
+import { GiThunderBlade } from 'react-icons/gi';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,7 +24,7 @@ export default function Introduction() {
             .split('')
             .map(
                 (char) =>
-                    `<span class="char inline-block translate-y-[120px] opacity-0">
+                    `<span class="char inline-block translate-y-30 opacity-0">
             ${char === ' ' ? '&nbsp;' : char}
           </span>`
             )
@@ -134,11 +137,72 @@ export default function Introduction() {
               lg:mx-0
             "
                     >
-                         Passionate about building modern full-stack web applications using
-  React, Next.js, Node.js, Express.js, MongoDB, REST APIs,
-  authentication systems, backend architecture, database management,
-  and interactive frontend experiences.
+                        Passionate about building modern full-stack web applications using
+                        React, Next.js, Node.js, Express.js, MongoDB, REST APIs,
+                        authentication systems, backend architecture, database management,
+                        and interactive frontend experiences.
                     </p>
+
+
+
+                     <div className="flex items-center gap-4 mt-8">
+    <a
+      href="https://github.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        w-12 h-12
+        rounded-full
+        border border-[#FFF6DE]
+        flex items-center justify-center
+        text-[#FFF6DE]
+        hover:bg-[#FFF6DE]
+        hover:text-black
+        transition-all duration-300
+        hover:scale-110
+      "
+    >
+      <GiThunderBlade size={22} />
+    </a>
+
+    <a
+      href="https://leetcode.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        w-12 h-12
+        rounded-full
+        border border-[#FFF6DE]
+        flex items-center justify-center
+        text-[#FFF6DE]
+        hover:bg-[#FFF6DE]
+        hover:text-black
+        transition-all duration-300
+        hover:scale-110
+      "
+    >
+      <SiLeetcode size={20} />
+    </a>
+
+    <a
+      href="https://linkedin.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        w-12 h-12
+        rounded-full
+        border border-[#FFF6DE]
+        flex items-center justify-center
+        text-[#FFF6DE]
+        hover:bg-[#FFF6DE]
+        hover:text-black
+        transition-all duration-300
+        hover:scale-110
+      "
+    >
+      <LiaLinkedin size={22} />
+    </a>
+  </div>
                 </div>
 
                 {/* RIGHT CONTENT */}

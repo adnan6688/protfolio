@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import About from './About';
 import Skills from './Skills';
 import Introduction from './Introduction';
+import Projects from './Projects';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,6 +43,10 @@ export const Hero = () => {
       <section className="panel">
        <Skills></Skills>
       </section>
+
+      <div className="panel">
+        <Projects></Projects>
+      </div>
     </div>
   );
 };
