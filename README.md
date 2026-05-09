@@ -1,0 +1,1 @@
+  <!-- <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-3xl"></div> -->
