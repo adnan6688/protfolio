@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
@@ -7,42 +7,36 @@ import Skills from './Skills';
 import Introduction from './Introduction';
 import Projects from './Projects';
 
-import sound1 from '../../Sounds/one.mp3'
-
+import sound1 from '../../Sounds/one.mp3';
+import { RiVoiceprintFill } from 'react-icons/ri';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isAudioEnabled, setIsAudioEnabled] = useState(false);
 
   // Audio refs
-  const introSound = useRef<HTMLAudioElement | null>(null);
-  const aboutSound = useRef<HTMLAudioElement | null>(null);
-  const skillsSound = useRef<HTMLAudioElement | null>(null);
-  const projectsSound = useRef<HTMLAudioElement | null>(null);
+  const audioRefs = useRef<{ [key: string]: HTMLAudioElement | null }>({
+    intro: null,
+    about: null,
+    skills: null,
+    projects: null,
+  });
 
   useEffect(() => {
-    // Sounds initialize
-    introSound.current = new Audio(sound1);
-    aboutSound.current = new Audio(sound1);
-    skillsSound.current = new Audio(sound1);
-    projectsSound.current = new Audio(sound1);
+    // Inisialisasi Audio
+    audioRefs.current.intro = new Audio(sound1);
+    audioRefs.current.about = new Audio(sound1);
+    audioRefs.current.skills = new Audio(sound1);
+    audioRefs.current.projects = new Audio(sound1);
 
-    // volume control
-    introSound.current.volume = 0.3;
-    aboutSound.current.volume = 0.3;
-    skillsSound.current.volume = 0.3;
-    projectsSound.current.volume = 0.3;
-
-    const sections = gsap.utils.toArray('.panel') as HTMLElement[];
+    Object.values(audioRefs.current).forEach(audio => {
+      if (audio) audio.volume = 0.3;
+    });
 
     const stopAllSounds = () => {
-      [
-        introSound.current,
-        aboutSound.current,
-        skillsSound.current,
-        projectsSound.current,
-      ].forEach((audio) => {
+      Object.values(audioRefs.current).forEach(audio => {
         if (audio) {
           audio.pause();
           audio.currentTime = 0;
@@ -50,8 +44,9 @@ export const Hero = () => {
       });
     };
 
+    const sections = gsap.utils.toArray('.panel') as HTMLElement[];
+
     sections.forEach((panel) => {
-      // Pin Scroll Effect
       ScrollTrigger.create({
         trigger: panel,
         start: 'top top',
@@ -60,93 +55,76 @@ export const Hero = () => {
         snap: 1 / (sections.length - 1),
       });
 
-      // Sound Trigger
       ScrollTrigger.create({
         trigger: panel,
         start: 'top center',
         end: 'bottom center',
-
         onEnter: () => {
           stopAllSounds();
-
-          if (panel.id === 'intro') {
-            introSound.current?.play();
-          }
-
-          if (panel.id === 'about') {
-            aboutSound.current?.play();
-          }
-
-          if (panel.id === 'skills') {
-            skillsSound.current?.play();
-          }
-
-          if (panel.id === 'projects') {
-            projectsSound.current?.play();
+          if (isAudioEnabled) {
+            audioRefs.current[panel.id]?.play().catch(() => { });
           }
         },
-
         onEnterBack: () => {
           stopAllSounds();
-
-          if (panel.id === 'intro') {
-            introSound.current?.play();
-          }
-
-          if (panel.id === 'about') {
-            aboutSound.current?.play();
-          }
-
-          if (panel.id === 'skills') {
-            skillsSound.current?.play();
-          }
-
-          if (panel.id === 'projects') {
-            projectsSound.current?.play();
+          if (isAudioEnabled) {
+            audioRefs.current[panel.id]?.play().catch(() => { });
           }
         },
       });
     });
 
-    // Browser autoplay unlock
-    const unlockAudio = () => {
-      introSound.current?.play().then(() => {
-        introSound.current?.pause();
-        introSound.current!.currentTime = 0;
-      });
-
-      window.removeEventListener('click', unlockAudio);
-    };
-
-    window.addEventListener('click', unlockAudio);
-
     return () => {
       ScrollTrigger.getAll().forEach((t) => t.kill());
-
       stopAllSounds();
-
-      window.removeEventListener('click', unlockAudio);
     };
-  }, []);
+  }, [isAudioEnabled]); // Trigger ulang saat audio diaktifkan
+
+  // Handler untuk Button
+  const handleEnableAudio = () => {
+    setIsAudioEnabled(true);
+
+    // Play suara pertama segera setelah klik
+    if (audioRefs.current.intro) {
+      audioRefs.current.intro.play().catch(e => console.log(e));
+    }
+  };
 
   return (
-    <div ref={containerRef}>
-      
-      <section id="intro" className="panel">
-        <Introduction />
-      </section>
+    <div onClick={handleEnableAudio} ref={containerRef} style={{ position: 'relative' }}>
 
-      <section id="about" className="panel">
-        <About />
-      </section>
+      {/* Floating Button Suara */}
+      {!isAudioEnabled && (
+        <button
+          onClick={handleEnableAudio}
+          style={{
+            position: 'fixed',
+            bottom: '30px',
+            right: '30px',
+            zIndex: 9999,
+            padding: '12px 24px',
+            backgroundColor: '#FFF6DE',
+            color: 'black',
+            border: 'none',
+            borderRadius: '50px',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontSize: '16px'
+          }}
+        >
+          <RiVoiceprintFill />
 
-      <section id="skills" className="panel">
-        <Skills />
-      </section>
+        </button>
+      )}
 
-      <section id="projects" className="panel">
-        <Projects />
-      </section>
+      <section id="intro" className="panel"><Introduction /></section>
+      <section id="about" className="panel"><About /></section>
+      <section id="skills" className="panel"><Skills /></section>
+      <section id="projects" className="panel"><Projects /></section>
 
     </div>
   );
