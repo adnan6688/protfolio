@@ -8,6 +8,8 @@ import Introduction from './Introduction';
 import Projects from './Projects';
 
 import sound1 from '../../Sounds/one.mp3';
+import sound2 from '../../Sounds/sound2.mp3'
+import sound3 from '../../Sounds/sound3.mp3'
 import { RiVoiceprintFill } from 'react-icons/ri';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -27,8 +29,8 @@ export const Hero = () => {
   useEffect(() => {
     // Inisialisasi Audio
     audioRefs.current.intro = new Audio(sound1);
-    audioRefs.current.about = new Audio(sound1);
-    audioRefs.current.skills = new Audio(sound1);
+    audioRefs.current.about = new Audio(sound2);
+    audioRefs.current.skills = new Audio(sound3);
     audioRefs.current.projects = new Audio(sound1);
 
     Object.values(audioRefs.current).forEach(audio => {
