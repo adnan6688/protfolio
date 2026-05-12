@@ -73,10 +73,12 @@ export default function Introduction() {
         };
     }, []);
 
+
     return (
         <section
             ref={sectionRef}
-            className="min-h-screen w-full bg-black flex items-center overflow-hidden px-5 sm:px-8 md:px-12 lg:px-20 py-10"
+            className="min-h-screen w-full bg-black flex items-center overflow-hidden px-6 sm:px-8          md:px-10
+                lg:px-20 py-10"
         >
             <div className="w-full mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-14 lg:gap-5">
 
@@ -145,12 +147,12 @@ export default function Introduction() {
 
 
 
-                     <div className="flex items-center gap-4 mt-8">
-    <a
-      href="https://github.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
+                    <div className="flex items-center gap-4 mt-8">
+                        <a
+                            href="https://github.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="
         w-12 h-12
         rounded-full
         border border-[#FFF6DE]
@@ -161,15 +163,15 @@ export default function Introduction() {
         transition-all duration-300
         hover:scale-110
       "
-    >
-      <GiThunderBlade size={22} />
-    </a>
+                        >
+                            <GiThunderBlade size={22} />
+                        </a>
 
-    <a
-      href="https://leetcode.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
+                        <a
+                            href="https://leetcode.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="
         w-12 h-12
         rounded-full
         border border-[#FFF6DE]
@@ -180,15 +182,15 @@ export default function Introduction() {
         transition-all duration-300
         hover:scale-110
       "
-    >
-      <SiLeetcode size={20} />
-    </a>
+                        >
+                            <SiLeetcode size={20} />
+                        </a>
 
-    <a
-      href="https://linkedin.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="
+                        <a
+                            href="https://linkedin.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="
         w-12 h-12
         rounded-full
         border border-[#FFF6DE]
@@ -199,10 +201,10 @@ export default function Introduction() {
         transition-all duration-300
         hover:scale-110
       "
-    >
-      <LiaLinkedin size={22} />
-    </a>
-  </div>
+                        >
+                            <LiaLinkedin size={22} />
+                        </a>
+                    </div>
                 </div>
 
                 {/* RIGHT CONTENT */}
