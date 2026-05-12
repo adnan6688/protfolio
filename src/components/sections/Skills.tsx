@@ -90,13 +90,13 @@ export default function Skills() {
             className="
                 min-h-screen
                 w-full
-                bg-gradient-to-b from-black via-[#050505] to-black
+                bg-linear-to-b from-black via-[#050505] to-black
                 px-6 md:px-10 lg:px-20
                 py-24
                 overflow-hidden
             "
         >
-            <div className="max-w-[1700px] mx-auto">
+            <div className="max-w-425 mx-auto">
 
                 {/* HEADER */}
                 <div className="space-y-7 mb-20">
@@ -132,25 +132,25 @@ export default function Skills() {
                                     relative
                                     rounded-[30px]
                                     p-6 md:p-7
-                                    h-[160px]
+                                    h-40
                                     flex flex-col justify-between
                                     overflow-hidden
 
-                                    bg-white/[0.04]
+                                    bg-white/4
                                     border border-white/10
                                     backdrop-blur-xl
 
                                     transition-all duration-500 ease-out
 
                                     hover:-translate-y-2
-                                    hover:rotate-[1deg]
-                                    hover:bg-white/[0.06]
+                                    hover:rotate-1
+                                    hover:bg-white/6
                                     hover:border-white/20
                                 "
                             >
                                 {/* glow */}
                                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
-                                    <div className="absolute -top-10 -right-10 w-[140px] h-[140px] bg-white/10 blur-3xl rounded-full" />
+                                    <div className="absolute -top-10 -right-10 w-35 h-35 bg-white/10 blur-3xl rounded-full" />
                                 </div>
 
                                 {/* icon */}
@@ -164,7 +164,7 @@ export default function Skills() {
                                 </p>
 
                                 {/* bottom line */}
-                                <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full bg-white/20 transition-all duration-500" />
+                                <div className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full bg-white/20 transition-all duration-500" />
                             </div>
                         );
                     })}

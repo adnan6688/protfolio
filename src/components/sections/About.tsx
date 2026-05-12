@@ -95,6 +95,7 @@ export default function About() {
                     grid
                     lg:grid-cols-2
                     gap-14
+     
                     items-center
                 "
             >

@@ -11,6 +11,7 @@ import sound1 from '../../Sounds/one.mp3';
 import sound2 from '../../Sounds/sound2.mp3'
 import sound3 from '../../Sounds/sound3.mp3'
 import { RiVoiceprintFill } from 'react-icons/ri';
+import ContactSection from './Contact';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -127,7 +128,8 @@ export const Hero = () => {
       <section id="about" className="panel"><About /></section>
       <section id="skills" className="panel"><Skills /></section>
       <section id="projects" className="panel"><Projects /></section>
-
+      <section id="contacts" className="panel"><ContactSection></ContactSection></section>
+   
     </div>
   );
 };
